@@ -262,3 +262,85 @@ canva()
 
 
 
+
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: "3.2",
+  centeredSlides: true,
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+
+
+
+
+// const circle = document.querySelector("#circle");
+// const swipercon = document.querySelector(".swiper");
+
+// function moveCircle(e) {
+//   gsap.to("#circle", {
+//     x: e.clientX - 3 * window.innerWidth / 100, // Adding 3vw equivalent to clientX
+//     y: e.clientY - 3 * window.innerHeight / 100, // Adding 3vw equivalent to clientY
+//     ease: "power4"
+//   });
+// }
+
+// swipercon.addEventListener("mouseenter", (e) => {
+//   gsap.to("#circle", {
+//     opacity: 1,
+//     height: "6vw",
+//     width: "6vw",
+//     ease: "power4"
+//   });
+// });
+
+// swipercon.addEventListener("mouseleave", (e) => {
+//   gsap.to("#circle", {
+//     opacity: 0,
+//     height: "0vw",
+//     width: "0vw",
+//     ease: "power4"
+//   });
+// });
+
+// swipercon.addEventListener("mousemove", moveCircle);
+
+
+
+const circle = document.querySelector("#circle");
+const swipercon = document.querySelector(".swiper");
+
+function moveCircle(e) {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+  const scrollX = window.scrollX || window.pageXOffset;
+  const scrollY = window.scrollY || window.pageYOffset;
+
+  gsap.to("#circle", {
+    x: mouseX + scrollX - 3 * window.innerWidth / 100,
+    y: mouseY + scrollY - 3 * window.innerHeight / 100,
+    ease: "power4"
+  });
+}
+
+swipercon.addEventListener("mouseenter", (e) => {
+  gsap.to("#circle", {
+    opacity: 1,
+    height: "6vw",
+    width: "6vw",
+  });
+});
+
+swipercon.addEventListener("mouseleave", (e) => {
+  gsap.to("#circle", {
+    opacity: 0,
+    height: "0vw",
+    width: "0vw",
+    ease: "power4"
+  });
+});
+
+swipercon.addEventListener("mousemove", moveCircle);
+window.addEventListener("scroll", moveCircle); // Add this line to update circle on scroll
